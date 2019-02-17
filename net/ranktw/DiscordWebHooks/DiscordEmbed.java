@@ -1,10 +1,6 @@
 package net.ranktw.DiscordWebHooks;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 import net.ranktw.DiscordWebHooks.embed.*;
 
 import java.awt.*;
@@ -14,10 +10,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
 public class DiscordEmbed extends Payload {
     String title;
     String type;

@@ -232,6 +232,8 @@ public class HttpRequest {
      */
     public static final String METHOD_POST = "POST";
 
+    public static final String METHOD_PATCH = "PATCH";
+
     /**
      * 'PUT' request method
      */
@@ -1096,6 +1098,10 @@ public class HttpRequest {
         return post(encode ? encode(url) : url);
     }
 
+    public static HttpRequest patch(final CharSequence url)
+            throws HttpRequestException {
+        return new HttpRequest(url, METHOD_PATCH);
+    }
     /**
      * Start a 'PUT' request to the given URL
      *

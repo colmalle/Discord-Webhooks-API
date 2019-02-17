@@ -5,12 +5,27 @@ import com.google.gson.Gson;
 import net.ranktw.DiscordWebHooks.connection.Response;
 import net.ranktw.DiscordWebHooks.connection.WebhookException;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import net.ranktw.DiscordWebHooks.connection.WebhookException;
+import org.apache.http.Consts;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.InputStreamBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.util.EntityUtils;
 
 public class DiscordWebhook {
-    public static final Gson gson = new Gson();
-    public String webhook;
+    private static final Gson gson = new Gson();
+    private String webhook;
 
     public DiscordWebhook(String webhook) {
         this.webhook = webhook;
@@ -33,6 +48,84 @@ public class DiscordWebhook {
                     }
                 } catch (Exception e) {
                     throw new WebhookException(strResponse);
+                }
+            }
+        }).start();
+    }
+    public void sendMessage(File... files) {
+        new Thread(() -> {
+            FileInputStream fis = null;
+            try {
+                DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+
+                // server back-end URL
+                HttpPost httppost = new HttpPost("https://discordapp.com/api/webhooks/546494746021986316/BvHLhhjx-d5UYpBz0hFoj2JgnsGFRJSUaZmRSta0cytMFIom34rKTXQ7u3onH7dwABGQ");
+                MultipartEntity entity = new MultipartEntity();
+                // set the file input stream and file name as arguments
+                for (int i = 0; i < files.length; i++) {
+                    File inFile = files[i];
+                    fis = new FileInputStream(inFile);
+                    entity.addPart("file"+i, new InputStreamBody(fis, inFile.getName()));
+                }
+                entity.addPart("payload_json", new StringBody("{\"content\": \"<@&533839633537171487>\"}", Consts.UTF_8));
+                httppost.setEntity(entity);
+                // execute the request
+                HttpResponse response = httpclient.execute(httppost);
+
+                int statusCode = response.getStatusLine().getStatusCode();
+                HttpEntity responseEntity = response.getEntity();
+                String responseString = EntityUtils.toString(responseEntity, "UTF-8");
+                if (statusCode==400) throw new WebhookException(responseString);
+                System.out.println("[" + statusCode + "] " + responseString);
+            } catch (ClientProtocolException e) {
+                System.err.println("Unable to make connection");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.err.println("Unable to read file");
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fis != null) fis.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }).start();
+    }
+    public void sendMessage(Payload dm,File... files) {
+        new Thread(() -> {
+            FileInputStream fis = null;
+            try {
+                DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+
+                // server back-end URL
+                HttpPost httppost = new HttpPost("https://discordapp.com/api/webhooks/546494746021986316/BvHLhhjx-d5UYpBz0hFoj2JgnsGFRJSUaZmRSta0cytMFIom34rKTXQ7u3onH7dwABGQ");
+                MultipartEntity entity = new MultipartEntity();
+                // set the file input stream and file name as arguments
+                for (int i = 0; i < files.length; i++) {
+                    File inFile = files[i];
+                    fis = new FileInputStream(inFile);
+                    entity.addPart("file"+i, new InputStreamBody(fis, inFile.getName()));
+                }
+                entity.addPart("payload_json", new StringBody(gson.toJson(dm), Consts.UTF_8));
+                httppost.setEntity(entity);
+                // execute the request
+                HttpResponse response = httpclient.execute(httppost);
+
+                int statusCode = response.getStatusLine().getStatusCode();
+                HttpEntity responseEntity = response.getEntity();
+                String responseString = EntityUtils.toString(responseEntity, "UTF-8");
+                if (statusCode==400) throw new WebhookException(responseString);
+                System.out.println("[" + statusCode + "] " + responseString);
+            } catch (ClientProtocolException e) {
+                System.err.println("Unable to make connection");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.err.println("Unable to read file");
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fis != null) fis.close();
+                } catch (IOException ignored) {
                 }
             }
         }).start();

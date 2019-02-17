@@ -1,12 +1,5 @@
 package net.ranktw.DiscordWebHooks.embed;
 
-import lombok.*;
-
-@Getter
-@Setter
-@Builder
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class AuthorEmbed {
     String name, url, icon_url, proxy_icon_url;
 

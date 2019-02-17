@@ -1,14 +1,10 @@
 package net.ranktw.DiscordWebHooks;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
+
 public class DiscordMessage extends Payload {
     String username;
     String content;

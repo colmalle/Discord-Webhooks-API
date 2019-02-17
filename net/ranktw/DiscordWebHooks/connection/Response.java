@@ -1,19 +1,18 @@
 package net.ranktw.DiscordWebHooks.connection;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Getter;
+//import lombok.Getter;
 import net.ranktw.DiscordWebHooks.DiscordEmbed;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+//@Getter
 public class Response {
     // {
     // "connection": ["Must be 2000 or fewer in length."],
     // "embeds": ["0"],
     // "username": ["Must be between 2 and 32 in length."]
-    // "message": "You are being rate limited."
     // }
     boolean global;
     String message;
