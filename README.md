@@ -51,6 +51,20 @@ discord.sendMessage(dm); //Finally, send the message:
 
 ![https://i.imgur.com/8TgrioI.png](https://i.imgur.com/8TgrioI.png)
 
+# Attach Files
+
+```java
+// sendMessage(DiscordMessage dm,File... files)
+discord.sendMessage(discordMessage,
+                    new File("D:\\RANKTW\\Desktop\\YouTube.png"),
+                    new File("D:\\RANKTW\\Desktop\\Hype.png"));
+```
+or
+```java
+// sendMessage(File... files)
+discord.sendMessage(new File("D:\\User\\Desktop\\Hype.png"));
+```
+
 ## Send a Custom Json Messages To Webhooks
 
 ```java
