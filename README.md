@@ -12,6 +12,7 @@ DiscordWebhook discord = new DiscordWebhook(webhook); // Create the webhook clie
 ```
 # Embeds
 Build an Embed
+
 You can send up to 10 Embeds in same request
 ```java
 DiscordEmbed embed = new DiscordEmbed.Builder()
