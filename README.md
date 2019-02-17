@@ -12,6 +12,7 @@ DiscordWebhook discord = new DiscordWebhook(webhook); // Create the webhook clie
 ```
 # Embeds
 Build an Embed
+You can send up to 10 Embeds in same request
 ```java
 DiscordEmbed embed = new DiscordEmbed.Builder()
    .withColor(Color.ORANGE)
@@ -52,7 +53,7 @@ discord.sendMessage(dm); //Finally, send the message:
 ![https://i.imgur.com/8TgrioI.png](https://i.imgur.com/8TgrioI.png)
 
 # Attach Files
-
+You can send up to 10 Files in same request
 ```java
 // sendMessage(DiscordMessage dm,File... files)
 discord.sendMessage(discordMessage,
