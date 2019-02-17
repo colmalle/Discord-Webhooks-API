@@ -76,3 +76,7 @@ DiscordWebhook.sendJsonToWebhook("Url","Json");
 ### Dependencies
 
 [HttpRequest](https://github.com/kevinsawicki/http-request) by @kevinsawicki
+
+## Releases `.jar`
+
+[Discord-Webhooks-API v1.0](https://github.com/RANKTW/Discord-Webhooks-API/releases)
