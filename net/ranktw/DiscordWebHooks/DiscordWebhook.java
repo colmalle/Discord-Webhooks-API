@@ -59,7 +59,7 @@ public class DiscordWebhook {
                 DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
 
                 // server back-end URL
-                HttpPost httppost = new HttpPost("https://discordapp.com/api/webhooks/546494746021986316/BvHLhhjx-d5UYpBz0hFoj2JgnsGFRJSUaZmRSta0cytMFIom34rKTXQ7u3onH7dwABGQ");
+                HttpPost httppost = new HttpPost(webhook);
                 MultipartEntity entity = new MultipartEntity();
                 // set the file input stream and file name as arguments
                 for (int i = 0; i < files.length; i++) {
@@ -98,7 +98,7 @@ public class DiscordWebhook {
                 DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
 
                 // server back-end URL
-                HttpPost httppost = new HttpPost("https://discordapp.com/api/webhooks/546494746021986316/BvHLhhjx-d5UYpBz0hFoj2JgnsGFRJSUaZmRSta0cytMFIom34rKTXQ7u3onH7dwABGQ");
+                HttpPost httppost = new HttpPost(webhook);
                 MultipartEntity entity = new MultipartEntity();
                 // set the file input stream and file name as arguments
                 for (int i = 0; i < files.length; i++) {
